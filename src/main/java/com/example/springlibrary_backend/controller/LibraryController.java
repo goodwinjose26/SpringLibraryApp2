@@ -25,14 +25,14 @@ public class LibraryController {
         return  "student details added successfully";
     }
 
-//    @CrossOrigin(origins = "*")
-//    @PostMapping(path = "/search",consumes = "application/json",produces = "application/json")
-//    public List<Library> searchBook(@RequestBody Library l)
-//    {
-//        String booktitle=String.valueOf(l.getBooktitle());
-//        System.out.println(booktitle);
-//        return (List<Library>) dao.searchBook(l.getBooktitle());
-//    }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/search",consumes = "application/json",produces = "application/json")
+    public List<Library> searchBook(@RequestBody Library l)
+    {
+        String booktitle=String.valueOf(l.getBooktitle());
+        System.out.println(booktitle);
+        return (List<Library>) dao.searchBook(l.getBooktitle());
+    }
 
 
 
