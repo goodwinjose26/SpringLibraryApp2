@@ -4,11 +4,9 @@ package com.example.springlibrary_backend.controller;
 import com.example.springlibrary_backend.dao.LibraryDao;
 import com.example.springlibrary_backend.model.Library;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -32,6 +30,26 @@ public class LibraryController {
         String booktitle=String.valueOf(l.getBooktitle());
         System.out.println(booktitle);
         return (List<Library>) dao.searchBook(l.getBooktitle());
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/view")
+    public List<Library> view()
+    {
+        return (List<Library>) dao.findAll();
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/delete",consumes = "application/json",produces = "application/json")
+    public HashMap<String, String> deleteBook(@RequestBody Library l)
+    {
+        String id=String.valueOf(l.getId());
+        System.out.println(id);
+        dao.deleteBook(l.getId());
+        HashMap<String,String> map=new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
 
