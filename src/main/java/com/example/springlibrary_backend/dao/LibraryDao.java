@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface LibraryDao extends CrudRepository<Library,Integer> {
 
-//    @Query(value ="" )
-//    List<Library> searchBook(@Param("booktitle") String booktitle);
+    @Query(value ="SELECT `id`, `author`, `booktitle`, `description`, `price`, `publisher` FROM `books` WHERE `booktitle`=:booktitle",nativeQuery = true )
+    List<Library> searchBook(@Param("booktitle") String booktitle);
 }
